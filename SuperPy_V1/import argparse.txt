@@ -1,0 +1,46 @@
+import argparse
+
+# Create the parser
+parser = argparse.ArgumentParser(description="Superpy Supermarket Inventory")
+
+# Define the "category" as a positional argument
+parser.add_argument("category", choices=["inventory", "revenue", "profit"])
+
+# Define specific options (PosA and OptA) as optional arguments
+inventory_group = parser.add_argument_group("Inventory options")
+inventory_group.add_argument("--now", action="store_true", help="Report inventory for today")
+inventory_group.add_argument("--yesterday", action="store_true", help="Report inventory for yesterday")
+
+revenue_group = parser.add_argument_group("Revenue options")
+revenue_group.add_argument("--today", action="store_true", help="Report revenue for today")
+revenue_group.add_argument("--yesterday", action="store_true", help="Report revenue for yesterday")
+revenue_group.add_argument("--date", help="Report revenue for a specific date (e.g., '2019-12')")
+
+profit_group = parser.add_argument_group("Profit options")
+profit_group.add_argument("--today", action="store_true", help="Report profit for today")
+
+# Parse the arguments
+args = parser.parse_args()
+
+# Now you can check which category was chosen and which options were specified
+if args.category == "inventory":
+    if args.now:
+        print("Reporting inventory for today")
+    elif args.yesterday:
+        print("Reporting inventory for yesterday")
+elif args.category == "revenue":
+    if args.today:
+        print("Reporting revenue for today")
+    elif args.yesterday:
+        print("Reporting revenue for yesterday")
+    elif args.date:
+        print(f"Reporting revenue for a specific date: {args.date}")
+elif args.category == "profit":
+    if args.today:
+        print("Reporting profit for today")
+This code uses argparse to handle the command-line arguments for different categories and their options. You can use this structure to simplify the handling of different categories and their respective options. It's more extensible and easier to understand than a deeply nested if-else structure.
+
+
+
+
+

@@ -1,0 +1,46 @@
+superpy:
+bought.csv:
+id,product_name,buy_date,buy_price,expiration_date
+1,appel,2020-1-1,0.6, 2020-1-10
+2,banana,2020-1-2,0.5,2020-1-9
+3,appel,2020-1-2,0.6,2020-1-10
+4,manderin, 2020-1-3, 0.8,2020-1-12
+
+sold.csv:
+id,bought_id,product_name,sell_date,sell_price
+1,3,appel,2020-1-3,0.7
+2,1,appel,2020-1-4,0.7
+3,2,banana,2020-1-5,0.8
+
+
+$ python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
+OK
+
+$ python super.py report inventory --now
++--------------+-------+-----------+-----------------+
+| Product Name | Count | Buy Price | Expiration Date |
++==============+=======+===========+=================+
+| Orange       | 1     | 0.8       | 2020-01-01      |
++--------------+-------+-----------+-----------------+
+
+$ python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
+OK
+
+$ python super.py report inventory --now
++--------------+-------+-----------+-----------------+-----------------------------
+| Product Name           | Count        | Buy Price             | Expiration Date                 |
++==============+=======+===========+=================+
+| Orange                          | 1                   | 0.8                          | 2020-01-01      |
++-----------------------+-----------+------------------+----------------------------+
+xxxxxxxxxxxxxx
+$ python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
+OK
+
+$ python super.py report inventory --now
++--------------+-------+-----------+-----------------+
+| Product Name | Count | Buy Price | Expiration Date |
++==============+=======+===========+=================+
+| Orange       | 1     | 0.8       | 2020-01-01      |
++--------------+-------+-----------+-----------------+
+
+
